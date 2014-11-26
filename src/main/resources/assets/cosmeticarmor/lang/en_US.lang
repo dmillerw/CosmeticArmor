@@ -2,3 +2,7 @@ item.skinHelmet.name=Skin Helmet
 item.skinChestplate.name=Skin Chestplate
 item.skinLeggings.name=Skin Leggings
 item.skinBoots.name=Skin Boots
+
+options.showArmor=Show Armor: %s
+cosmetic.on=ON
+cosmetic.off=OFF

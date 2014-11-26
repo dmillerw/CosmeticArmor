@@ -19,6 +19,9 @@ public class PlayerRenderHandler {
 
     @SubscribeEvent
     public void renderPlayerEventPre(RenderPlayerEvent.Pre event) {
+        if (!GuiHandler.showArmor)
+            return;
+
         ItemStack[] cache = new ItemStack[4];
         for (int i = 0; i < 4; i++) {
             ItemStack itemStack = event.entityPlayer.inventory.armorItemInSlot(3 - i);
@@ -43,6 +46,9 @@ public class PlayerRenderHandler {
 
     @SubscribeEvent
     public void renderPlayerEventPost(RenderPlayerEvent.Post event) {
+        if (!GuiHandler.showArmor)
+            return;
+
         ItemStack[] cache = armorCache.get(event.entityPlayer.getCommandSenderName());
         for (int i = 0; i < 4; i++) {
             event.entityPlayer.inventory.armorInventory[3 - i] = cache[i];

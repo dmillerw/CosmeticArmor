@@ -5,6 +5,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import dmillerw.armor.client.handler.GuiHandler;
 import dmillerw.armor.client.handler.KeyHandler;
 import dmillerw.armor.client.handler.PlayerRenderHandler;
 import dmillerw.armor.core.CommonProxy;
@@ -22,6 +23,7 @@ public class ClientProxy extends CommonProxy {
 
         FMLCommonHandler.instance().bus().register(new KeyHandler());
         MinecraftForge.EVENT_BUS.register(new PlayerRenderHandler());
+        MinecraftForge.EVENT_BUS.register(new GuiHandler());
     }
 
     @Override
