@@ -22,11 +22,11 @@ public class KeyHandler {
         ClientRegistry.registerKeyBinding(KEY_COSMETIC_INVENTORY);
     }
 
-    @SideOnly(value= Side.CLIENT)
+    @SideOnly(value = Side.CLIENT)
     @SubscribeEvent
     public void playerTick(TickEvent.PlayerTickEvent event) {
         if (event.side == Side.SERVER) return;
-        if (event.phase == TickEvent.Phase.START ) {
+        if (event.phase == TickEvent.Phase.START) {
             if (KEY_COSMETIC_INVENTORY.getIsKeyPressed() && FMLClientHandler.instance().getClient().inGameHasFocus) {
                 PacketHandler.INSTANCE.sendToServer(new PacketOpenGUI());
             }

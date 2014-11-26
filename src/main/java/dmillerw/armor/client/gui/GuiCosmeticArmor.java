@@ -1,10 +1,7 @@
 package dmillerw.armor.client.gui;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import dmillerw.armor.client.handler.KeyHandler;
-import dmillerw.armor.core.handler.PlayerHandler;
 import dmillerw.armor.core.inventory.ContainerCosmeticArmor;
-import dmillerw.armor.core.inventory.InventoryArmor;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.achievement.GuiAchievements;
 import net.minecraft.client.gui.achievement.GuiStats;
@@ -19,8 +16,6 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-
-import java.util.Arrays;
 
 
 public class GuiCosmeticArmor extends InventoryEffectRenderer {
@@ -132,7 +127,7 @@ public class GuiCosmeticArmor extends InventoryEffectRenderer {
     protected void actionPerformed(GuiButton guiButton) {
         if (guiButton.id == 0) {
             this.mc.displayGuiScreen(new GuiAchievements(this, this.mc.thePlayer.getStatFileWriter()));
-        } else  if (guiButton.id == 1) {
+        } else if (guiButton.id == 1) {
             this.mc.displayGuiScreen(new GuiStats(this, this.mc.thePlayer.getStatFileWriter()));
         }
     }

@@ -20,7 +20,7 @@ public class PlayerRenderHandler {
     @SubscribeEvent
     public void renderPlayerEventPre(RenderPlayerEvent.Pre event) {
         ItemStack[] cache = new ItemStack[4];
-        for (int i=0; i<4; i++) {
+        for (int i = 0; i < 4; i++) {
             cache[i] = event.entityPlayer.inventory.armorItemInSlot(3 - i).copy();
         }
 
@@ -28,7 +28,7 @@ public class PlayerRenderHandler {
 
         InventoryArmor inventoryArmor = PlayerHandler.getArmor(event.entityPlayer);
 
-        for (int i=0; i<4; i++) {
+        for (int i = 0; i < 4; i++) {
             ItemStack cosmetic = inventoryArmor.getStackInSlot(i);
             if (cosmetic != null) {
                 if (cosmetic.getItem() instanceof ItemArmorSkin)
@@ -42,7 +42,7 @@ public class PlayerRenderHandler {
     @SubscribeEvent
     public void renderPlayerEventPost(RenderPlayerEvent.Post event) {
         ItemStack[] cache = armorCache.get(event.entityPlayer.getCommandSenderName());
-        for (int i=0; i<4; i++) {
+        for (int i = 0; i < 4; i++) {
             event.entityPlayer.inventory.armorInventory[3 - i] = cache[i];
         }
 

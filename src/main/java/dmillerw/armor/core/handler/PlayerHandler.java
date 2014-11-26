@@ -92,7 +92,6 @@ public class PlayerHandler {
                         FileOutputStream fileoutputstream = new FileOutputStream(file1);
                         CompressedStreamTools.writeCompressed(data, fileoutputstream);
                         fileoutputstream.close();
-
                     }
                 } catch (Exception e) {
 

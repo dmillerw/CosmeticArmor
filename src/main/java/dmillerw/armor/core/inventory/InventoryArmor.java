@@ -143,7 +143,7 @@ public class InventoryArmor implements IInventory {
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack itemStack) {
-        return itemStack.getItem() instanceof ItemArmor && ((ItemArmor)itemStack.getItem()).armorType == slot;
+        return itemStack.getItem() instanceof ItemArmor && ((ItemArmor) itemStack.getItem()).armorType == slot;
     }
 
     public void writeToNBT(EntityPlayer entityPlayer) {
