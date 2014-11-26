@@ -1,6 +1,7 @@
 package dmillerw.armor.core.inventory;
 
 import dmillerw.armor.core.handler.PlayerHandler;
+import dmillerw.armor.core.item.ItemArmorSkin;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemArmor;
@@ -47,9 +48,8 @@ public class ContainerCosmeticArmor extends Container {
                 }
 
                 @Override
-                public boolean isItemValid(ItemStack par1ItemStack) {
-                    if (par1ItemStack == null) return false;
-                    return par1ItemStack.getItem().isValidArmor(par1ItemStack, k, thePlayer);
+                public boolean isItemValid(ItemStack itemStack) {
+                    return itemStack != null && itemStack.getItem().isValidArmor(itemStack, k, thePlayer);
                 }
             });
 
@@ -60,9 +60,8 @@ public class ContainerCosmeticArmor extends Container {
                 }
 
                 @Override
-                public boolean isItemValid(ItemStack par1ItemStack) {
-                    if (par1ItemStack == null) return false;
-                    return par1ItemStack.getItem().isValidArmor(par1ItemStack, k, thePlayer);
+                public boolean isItemValid(ItemStack itemStack) {
+                    return itemStack != null && (itemStack.getItem() instanceof ItemArmorSkin || itemStack.getItem().isValidArmor(itemStack, k, thePlayer));
                 }
             });
         }
@@ -80,17 +79,11 @@ public class ContainerCosmeticArmor extends Container {
         this.onCraftMatrixChanged(this.craftMatrix);
     }
 
-    /**
-     * Callback for when the crafting matrix is changed.
-     */
     @Override
     public void onCraftMatrixChanged(IInventory par1IInventory) {
         this.craftResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(this.craftMatrix, this.thePlayer.worldObj));
     }
 
-    /**
-     * Called when the container is closed.
-     */
     @Override
     public void onContainerClosed(EntityPlayer player) {
         super.onContainerClosed(player);
@@ -103,7 +96,7 @@ public class ContainerCosmeticArmor extends Container {
             }
         }
 
-        this.craftResult.setInventorySlotContents(0, (ItemStack) null);
+        this.craftResult.setInventorySlotContents(0, null);
 
         if (!player.worldObj.isRemote) {
             PlayerHandler.setArmor(player, inventoryArmor);
@@ -161,7 +154,7 @@ public class ContainerCosmeticArmor extends Container {
             }
 
             if (itemstack1.stackSize == 0) {
-                slot.putStack((ItemStack) null);
+                slot.putStack(null);
             } else {
                 slot.onSlotChanged();
             }
@@ -176,19 +169,11 @@ public class ContainerCosmeticArmor extends Container {
         return itemstack;
     }
 
-    private void unequipBauble(ItemStack stack) {
-//    	if (stack.getItem() instanceof IBauble) {
-//    		((IBauble)stack.getItem()).onUnequipped(stack, thePlayer);
-//    	}
-    }
-
-
     @Override
     public void putStacksInSlots(ItemStack[] p_75131_1_) {
         inventoryArmor.blockEvents = true;
         super.putStacksInSlots(p_75131_1_);
     }
-
 
     protected boolean mergeItemStack(ItemStack par1ItemStack, int par2, int par3, boolean par4, Slot ss) {
         boolean flag1 = false;
