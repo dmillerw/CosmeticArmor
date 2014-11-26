@@ -52,7 +52,7 @@ public class CommonProxy {
                 "WWW",
                 "WWW",
                 'W', Items.wheat,
-                'L', Items.leather_helmet
+                'L', Items.leather_chestplate
         );
 
         GameRegistry.addShapedRecipe(
@@ -61,7 +61,7 @@ public class CommonProxy {
                 "WLW",
                 "W W",
                 'W', Items.wheat,
-                'L', Items.leather_helmet
+                'L', Items.leather_leggings
         );
 
         GameRegistry.addShapedRecipe(
@@ -69,7 +69,7 @@ public class CommonProxy {
                 "WLW",
                 "W W",
                 'W', Items.wheat,
-                'L', Items.leather_helmet
+                'L', Items.leather_boots
         );
 
         MinecraftForge.EVENT_BUS.register(new PlayerEventHandler());
