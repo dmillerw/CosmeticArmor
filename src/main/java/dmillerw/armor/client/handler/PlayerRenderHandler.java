@@ -21,7 +21,9 @@ public class PlayerRenderHandler {
     public void renderPlayerEventPre(RenderPlayerEvent.Pre event) {
         ItemStack[] cache = new ItemStack[4];
         for (int i = 0; i < 4; i++) {
-            cache[i] = event.entityPlayer.inventory.armorItemInSlot(3 - i).copy();
+            ItemStack itemStack = event.entityPlayer.inventory.armorItemInSlot(3 - i);
+            if (itemStack != null)
+                cache[i] = itemStack.copy();
         }
 
         armorCache.put(event.entityPlayer.getCommandSenderName(), cache);
@@ -45,7 +47,5 @@ public class PlayerRenderHandler {
         for (int i = 0; i < 4; i++) {
             event.entityPlayer.inventory.armorInventory[3 - i] = cache[i];
         }
-
-        armorCache.remove(event.entityPlayer.getCommandSenderName());
     }
 }
