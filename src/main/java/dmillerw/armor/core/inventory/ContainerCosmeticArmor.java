@@ -15,7 +15,7 @@ public class ContainerCosmeticArmor extends Container {
 
     public boolean localWorld;
 
-    private final EntityPlayer thePlayer;
+    protected final EntityPlayer thePlayer;
 
     public ContainerCosmeticArmor(EntityPlayer player, boolean localWorld) {
         this.thePlayer = player;
@@ -52,12 +52,20 @@ public class ContainerCosmeticArmor extends Container {
                     return par1ItemStack.getItem().isValidArmor(par1ItemStack, k, thePlayer);
                 }
             });
-        }
 
-        this.addSlotToContainer(new Slot(inventoryArmor, 0, 80, 8 + 0 * 18));
-        this.addSlotToContainer(new Slot(inventoryArmor, 1, 80, 8 + 1 * 18));
-        this.addSlotToContainer(new Slot(inventoryArmor, 2, 80, 8 + 2 * 18));
-        this.addSlotToContainer(new Slot(inventoryArmor, 3, 80, 8 + 3 * 18));
+            this.addSlotToContainer(new Slot(inventoryArmor, i, 80, 8 + i * 18) {
+                @Override
+                public int getSlotStackLimit() {
+                    return 1;
+                }
+
+                @Override
+                public boolean isItemValid(ItemStack par1ItemStack) {
+                    if (par1ItemStack == null) return false;
+                    return par1ItemStack.getItem().isValidArmor(par1ItemStack, k, thePlayer);
+                }
+            });
+        }
 
         for (i = 0; i < 3; ++i) {
             for (j = 0; j < 9; ++j) {
