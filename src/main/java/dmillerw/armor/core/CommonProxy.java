@@ -8,6 +8,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import dmillerw.armor.CosmeticArmor;
 import dmillerw.armor.core.event.PlayerEventHandler;
 import dmillerw.armor.core.handler.GuiHandler;
+import dmillerw.armor.core.handler.LocalizationUpdater;
 import dmillerw.armor.core.item.ItemArmorSkin;
 import dmillerw.armor.core.network.PacketHandler;
 import net.minecraft.init.Items;
@@ -16,6 +17,7 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
 
 /**
  * @author dmillerw
@@ -26,6 +28,8 @@ public class CommonProxy {
     public static Item armorSkinChestplate;
     public static Item armorSkinLeggings;
     public static Item armorSkinBoots;
+
+    public static Configuration configuration;
 
     public void preInit(FMLPreInitializationEvent event) {
         armorSkinHelmet = new ItemArmorSkin(ItemArmor.ArmorMaterial.CLOTH, 0, 0).setUnlocalizedName("skinHelmet").setTextureName("leather_helmet");
@@ -71,6 +75,14 @@ public class CommonProxy {
                 'W', Items.wheat,
                 'L', Items.leather_boots
         );
+
+        configuration = new Configuration(event.getSuggestedConfigurationFile());
+        configuration.load();
+
+        LocalizationUpdater.initializeThread(configuration);
+
+        if (configuration.hasChanged())
+            configuration.save();
 
         MinecraftForge.EVENT_BUS.register(new PlayerEventHandler());
 
