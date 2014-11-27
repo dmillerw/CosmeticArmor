@@ -1,0 +1,8 @@
+item.skinHelmet.name=隐形头盔
+item.skinChestplate.name=隐形胸甲
+item.skinLeggings.name=隐形护腿
+item.skinBoots.name=隐形靴子
+
+options.showArmor=显示护甲: %s
+cosmetic.on=打开
+cosmetic.off=关闭
