@@ -29,7 +29,7 @@ public class ContainerCosmeticArmor extends Container {
             InventoryArmor global = PlayerHandler.getArmor(player);
             inventoryArmor.stackList = new ItemStack[4];
             for (int i=0; i<4; i++) {
-                inventoryArmor.stackList[i] = global.stackList[i].copy();
+                inventoryArmor.stackList[i] = global.stackList[i] != null ? global.stackList[i].copy() : null;
             }
         }
 
