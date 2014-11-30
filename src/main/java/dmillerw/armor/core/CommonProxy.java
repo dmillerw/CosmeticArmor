@@ -31,6 +31,8 @@ public class CommonProxy {
 
     public static Configuration configuration;
 
+    public static LocalizationUpdater localizationUpdater;
+
     public void preInit(FMLPreInitializationEvent event) {
         armorSkinHelmet = new ItemArmorSkin(ItemArmor.ArmorMaterial.CLOTH, 0, 0).setUnlocalizedName("skinHelmet").setTextureName("leather_helmet");
         armorSkinChestplate = new ItemArmorSkin(ItemArmor.ArmorMaterial.CLOTH, 0, 1).setUnlocalizedName("skinChestplate").setTextureName("leather_chestplate");
@@ -79,7 +81,8 @@ public class CommonProxy {
         configuration = new Configuration(event.getSuggestedConfigurationFile());
         configuration.load();
 
-        LocalizationUpdater.initializeThread(configuration);
+        localizationUpdater = new LocalizationUpdater("dmillerw", "CosmeticArmor", "master", "src/main/resources/assets/cosmeticarmor/lang/");
+        localizationUpdater.initializeThread(configuration);
 
         if (configuration.hasChanged())
             configuration.save();
