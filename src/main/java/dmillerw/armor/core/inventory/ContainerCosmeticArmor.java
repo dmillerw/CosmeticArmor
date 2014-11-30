@@ -26,7 +26,11 @@ public class ContainerCosmeticArmor extends Container {
         inventoryArmor.setEventHandler(this);
 
         if (!player.worldObj.isRemote) {
-            inventoryArmor.stackList = PlayerHandler.getArmor(player).stackList;
+            InventoryArmor global = PlayerHandler.getArmor(player);
+            inventoryArmor.stackList = new ItemStack[4];
+            for (int i=0; i<4; i++) {
+                inventoryArmor.stackList[i] = global.stackList[i].copy();
+            }
         }
 
         this.addSlotToContainer(new SlotCrafting(player, this.craftMatrix, this.craftResult, 0, 144, 36));
