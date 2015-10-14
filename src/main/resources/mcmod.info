@@ -1,0 +1,15 @@
+[{
+  "modid": "CosmeticArmor",
+  "name": "Cosmetic Armor",
+  "description": "Adds four additional armour slots which are entirely cosmetic. Any armour placed in these new slots will be viable on the player however the armour will not have any effect.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "credits": "",
+  "logoFile": "",
+  "url":  "http://minecraft.curseforge.com/projects/cosmetic-armor",
+  "updateUrl": "",
+  "authorList": ["dmillerw"],
+  "parent": "",
+  "screenshots": [],
+  "dependencies": []
+}]
