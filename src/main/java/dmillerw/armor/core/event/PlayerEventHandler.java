@@ -2,6 +2,7 @@ package dmillerw.armor.core.event;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.server.FMLServerHandler;
+import dmillerw.armor.core.CommonProxy;
 import dmillerw.armor.core.handler.PlayerHandler;
 import dmillerw.armor.core.inventory.InventoryArmor;
 import dmillerw.armor.core.network.PacketHandler;
@@ -38,7 +39,11 @@ public class PlayerEventHandler {
 
     @SubscribeEvent
     public void onPlayerDeath(PlayerDropsEvent event) {
-        if (event.entity instanceof EntityPlayer && !event.entity.worldObj.isRemote && !event.entity.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory")) {
+        if (event.entity instanceof EntityPlayer &&
+            !event.entity.worldObj.isRemote &&
+            !event.entity.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory") &&
+            CommonProxy.dropOnDeath) {
+
             PlayerHandler.getArmor(event.entityPlayer).dropItemsAt(event.drops, event.entityPlayer);
         }
     }

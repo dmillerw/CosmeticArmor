@@ -8,7 +8,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import dmillerw.armor.CosmeticArmor;
 import dmillerw.armor.core.event.PlayerEventHandler;
 import dmillerw.armor.core.handler.GuiHandler;
-import dmillerw.armor.core.handler.LocalizationUpdater;
 import dmillerw.armor.core.item.ItemArmorSkin;
 import dmillerw.armor.core.network.PacketHandler;
 import net.minecraft.init.Items;
@@ -31,7 +30,7 @@ public class CommonProxy {
 
     public static Configuration configuration;
 
-    public static LocalizationUpdater localizationUpdater;
+    public static boolean dropOnDeath = true;
 
     public void preInit(FMLPreInitializationEvent event) {
         armorSkinHelmet = new ItemArmorSkin(ItemArmor.ArmorMaterial.CLOTH, 0, 0).setUnlocalizedName("skinHelmet").setTextureName("leather_helmet");
@@ -81,8 +80,7 @@ public class CommonProxy {
         configuration = new Configuration(event.getSuggestedConfigurationFile());
         configuration.load();
 
-        localizationUpdater = new LocalizationUpdater("dmillerw", "CosmeticArmor", "master", "src/main/resources/assets/cosmeticarmor/lang/");
-        localizationUpdater.initializeThread(configuration);
+        dropOnDeath = configuration.get(Configuration.CATEGORY_GENERAL, "dropOnDeath", true).getBoolean(true);
 
         if (configuration.hasChanged())
             configuration.save();
